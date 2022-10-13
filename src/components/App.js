@@ -4,13 +4,28 @@ import youtube from '../apis/youtube';
 import Videolist from './VideoList';
 import VideoDetail from './VideoDetail';
 import './VideoItem.css';
+import useVideos from '../hooks/useVideos';
 
 
 const App = () => {
+
+    // USING CUSTOM HOOKS
+
+    // const [selectedVideo, setSelectedVideo] = useState(null);
+    // const [videos, search] = useVideos('Mount Everest');
+
+    // useEffect(() => {
+    //     setSelectedVideo(videos[0]);
+    // }, [videos])
+
+
+
+    // NORMAL
+
     const [videos, setVideos] = useState([]);
     const [selectedVideo, setSelectedVideo] = useState(null);
 
-    const onTermSubmit = async (term) => {
+    const search = async (term) => {
         const response = await youtube.get('/search', {
             params: {
                 q: term
@@ -22,14 +37,12 @@ const App = () => {
     }
 
     useEffect(() => {
-        onTermSubmit('himachal')
+        search('Mount Everest')
     }, [])
 
-
-
     return (
-        <div className='ui container'>
-            <SearchBar onFormSubmit={onTermSubmit} />
+        <div className='ui-container'>
+            <SearchBar onFormSubmit={search} />
             <div className='grid-container'>
                 <div className=''>
                     <VideoDetail video={selectedVideo} />

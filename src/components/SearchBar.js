@@ -12,7 +12,7 @@ const SearchBar = ({ onFormSubmit }) => {
     return (
         <div className='seach-bar ui segment'>
             <form onSubmit={onSubmit} className='ui form'>
-                <label className='field'>Video Search</label>
+                <label className='ui header'>Video Search by Udit</label>
                 <input
                     onChange={(e) => setTerm(e.target.value)}
                     value={term} type="text"
